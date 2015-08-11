@@ -20,11 +20,11 @@ struct Bimap {
     }
 
     KeyType& keyForValue(const ValueType &value) {
-        return _transposeMap[value];
+        return _transposeMap.at(value);
     }
 
     ValueType& valueForKey(const KeyType &key) {
-        return _normalMap[key];
+        return _normalMap.at(key);
     }
 
     bool removeKey(const KeyType& key) {
