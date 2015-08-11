@@ -65,6 +65,10 @@ struct Bimap {
         return _normalMap.size();
     }
 
+    const std::map<ValueType, KeyType>& valueMap() const {
+        return _transposeMap;
+    };
+
 private:
 
     std::unordered_map<KeyType, ValueType> _normalMap;
