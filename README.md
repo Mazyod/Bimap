@@ -1,12 +1,16 @@
 # Bimap
 
-C++ Bimap implementation, header-only, with tests, not efficient nor generic enough, but gets the job done. Contributions welcome
+C++ Bimap implementation, header-only, with tests, not efficient nor generic enough, but gets the job done. Contributions welcome.
 
 There is not much to say here, I preferred ObjC style methods over operator overloading, so the interface is very explicit.
 
 ## How To Use
 
 Just include the `Bimap.h` header into your project, and start using!
+
+## Todo
+
+- [ ] Add a freakin namespace
 
 ## Contributing
 
