@@ -33,8 +33,8 @@ struct Bimap {
         if (has) {
 
             auto &value = valueForKey(key);
-            _normalMap.erase(key);
             _transposeMap.erase(value);
+            _normalMap.erase(key);
         }
 
         return has;
