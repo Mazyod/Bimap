@@ -2,7 +2,8 @@
 
 C++ Bimap implementation, header-only, with tests, not efficient nor generic enough, but gets the job done. Contributions welcome.
 
-There is not much to say here, I preferred ObjC style methods over operator overloading, so the interface is very explicit.
+- I preferred ObjC style methods over operator overloading, so the interface is very explicit.
+- Take special care that given a value, and array of keys are returned. (Can't assume that keys have unique values!)
 
 ## How To Use
 
