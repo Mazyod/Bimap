@@ -3,7 +3,7 @@
 C++ Bimap implementation, header-only, with tests, not efficient nor generic enough, but gets the job done. Contributions welcome.
 
 - I preferred ObjC style methods over operator overloading, so the interface is very explicit.
-- Take special care that given a value, and array of keys are returned. (Can't assume that keys have unique values!)
+- Take special care that given a value, and array of keys is returned. (Can't assume that keys have unique values!)
 
 ## How To Use
 
