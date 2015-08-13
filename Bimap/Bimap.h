@@ -7,19 +7,26 @@
 
 #include <unordered_map>
 #include <map>
+#include <unordered_set>
 
 /** Simple Bimap implementation, with only STL dependency
  */
 template <typename KeyType, typename ValueType>
 struct Bimap {
 
+    typedef std::unordered_set<KeyType> Keys;
+
+    typedef std::unordered_map<KeyType, ValueType> KeyMap;
+    typedef std::map<ValueType, Keys> ValueMap;
+
+
     void set(const KeyType& key, const ValueType& value) {
 
         _normalMap[key] = value;
-        _transposeMap[value] = key;
+        _transposeMap[value].insert(key);
     }
 
-    KeyType& keyForValue(const ValueType &value) {
+    Keys& keysForValue(const ValueType &value) {
         return _transposeMap.at(value);
     }
 
@@ -33,7 +40,12 @@ struct Bimap {
         if (has) {
 
             auto &value = valueForKey(key);
-            _transposeMap.erase(value);
+            auto &keys = keysForValue(value);
+            keys.erase(key);
+            if (keys.empty()) {
+                _transposeMap.erase(value);
+            }
+
             _normalMap.erase(key);
         }
 
@@ -45,8 +57,11 @@ struct Bimap {
         auto has = hasValue(value);
         if (has) {
 
-            auto &key = keyForValue(value);
-            _normalMap.erase(key);
+            auto &keys = keysForValue(value);
+            for (auto item : keys) {
+                _normalMap.erase(item);
+            }
+
             _transposeMap.erase(value);
         }
 
@@ -65,14 +80,18 @@ struct Bimap {
         return _normalMap.size();
     }
 
-    const std::map<ValueType, KeyType>& valueMap() const {
+    const ValueMap& valueMap() const {
         return _transposeMap;
+    };
+
+    const KeyMap& keyMap() const {
+        return _normalMap;
     };
 
 private:
 
-    std::unordered_map<KeyType, ValueType> _normalMap;
-    std::map<ValueType, KeyType> _transposeMap;
+    KeyMap _normalMap;
+    ValueMap _transposeMap;
 };
 
 
