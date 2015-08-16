@@ -22,7 +22,7 @@ struct Bimap {
 
     void set(const KeyType& key, const ValueType& value) {
 
-        _normalMap[key] = value;
+        _normalMap.insert(std::make_pair(key, value));
         _transposeMap[value].insert(key);
     }
 
