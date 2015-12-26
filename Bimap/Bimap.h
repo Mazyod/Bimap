@@ -19,6 +19,8 @@ struct Bimap {
     typedef std::unordered_map<KeyType, ValueType> KeyMap;
     typedef std::map<ValueType, Keys> ValueMap;
 
+    typedef std::pair<ValueType, Keys> ValueMapEntry;
+
 
     void set(const KeyType& key, const ValueType& value) {
 
